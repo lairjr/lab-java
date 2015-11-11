@@ -67,4 +67,32 @@ public class Tree {
         
         return nodePrintList;
     }
+    
+    public Integer GetNodesByLevelCountOperations() {
+        Integer operationsCount = 0;
+        
+        ArrayList<Node> nodePrintList = new ArrayList<>(); // operations +1
+        Queue<Node> nodeQueue = new ArrayDeque<>(); // operations +1
+        
+        if (_root == null) // operations +1
+            throw new IllegalArgumentException("Null root node"); // operations +1
+        
+        Node currentNode = _root; // operations +1
+        
+        while (currentNode != null) { // operations +1n 
+            if (currentNode.getLeft() != null) // operations +1n
+                nodeQueue.add(currentNode.getLeft()); // operations +1n
+            if (currentNode.getRight() != null) // operations +1n
+                nodeQueue.add(currentNode.getRight()); // operations +1n
+            
+            nodePrintList.add(currentNode); // operations +1n
+            currentNode = nodeQueue.poll(); // operations +1n
+            operationsCount += 7;
+        }
+        
+        // operations +1
+        operationsCount+= 6;
+        
+        return operationsCount;
+    }
 }
