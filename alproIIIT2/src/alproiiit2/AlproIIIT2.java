@@ -39,6 +39,12 @@ public class AlproIIIT2 {
             WriteOutput(numberOfNodes, numberOfOperations);
         }
         
+        /*for (Integer numberOfNodes = 1; numberOfNodes <= 10000; numberOfNodes++) {
+            GenerateRandomTree(numberOfNodes);
+            Integer numberOfOperations = GetNumberOfOperations();
+            WriteOutput(numberOfNodes, numberOfOperations);
+        }*/
+        
         CloseFile();
     }
     
@@ -76,6 +82,7 @@ public class AlproIIIT2 {
             BufferWriter.newLine();
             BufferWriter.write(numberOfNodes + "," + numberOfOperations);
         } catch (Exception e) {
+            // let it throw
         }
     }
     
