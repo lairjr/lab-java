@@ -20,40 +20,43 @@ public class Tree {
         _root = new Node();
     }
     
-    public void Add(Integer key) {
-        Add0(key, _root);
+    /**
+     * @return the _root
+     */
+    public Node getRoot() {
+        return _root;
+    }
+
+    public void setRoot(Integer _rootKey) {
+        this._root = new Node(_rootKey, true);
     }
     
-    private void Add0(Integer key, Node father) {
+    public void add(Integer key) {
+        add0(key, getRoot());
+    }
+    
+    private void add0(Integer key, Node father) {
         if (father.getKey() > key) {
             if (father.getLeft() != null) 
-                Add0(key, father.getLeft());
+                add0(key, father.getLeft());
             else
                 father.setLeft(new Node(key));
         } else {
             if (father.getRight()!= null) 
-                Add0(key, father.getRight());
+                add0(key, father.getRight());
             else
                 father.setRight(new Node(key));
         }
     }
     
-    public String Test(String input) {
-        return input;
-    }
-    
-    public void SetRoot(Node nodeRoot) {
-        _root = nodeRoot;
-    }
-    
-    public ArrayList<Node> GetNodesByLevel() {
+    public ArrayList<Node> getNodesByLevel() {
         ArrayList<Node> nodePrintList = new ArrayList<>();
         Queue<Node> nodeQueue = new ArrayDeque<>();
         
-        if (_root == null) 
+        if (getRoot() == null) 
             throw new IllegalArgumentException("Null root node");
         
-        Node currentNode = _root;
+        Node currentNode = getRoot();
         
         while (currentNode != null) {
             if (currentNode.getLeft() != null)
@@ -68,16 +71,16 @@ public class Tree {
         return nodePrintList;
     }
     
-    public Integer GetNodesByLevelCountOperations() {
+    public Integer getNodesByeLvelCountOperations() {
         Integer operationsCount = 0;
         
         ArrayList<Node> nodePrintList = new ArrayList<>(); // operations +1
         Queue<Node> nodeQueue = new ArrayDeque<>(); // operations +1
         
-        if (_root == null) // operations +1
+        if (getRoot() == null) // operations +1
             throw new IllegalArgumentException("Null root node"); // operations +1
         
-        Node currentNode = _root; // operations +1
+        Node currentNode = getRoot(); // operations +1
         
         while (currentNode != null) { // operations +1n 
             if (currentNode.getLeft() != null) // operations +1n
@@ -95,4 +98,5 @@ public class Tree {
         
         return operationsCount;
     }
+
 }

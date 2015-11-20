@@ -25,8 +25,8 @@ public class AlproIIIT2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Bootstrap();
-        LoadFile();
+        bootstrap();
+        loadFile();
         
         while (true) {
             System.out.println("Informe o número de nodos: (0 para sair)");
@@ -34,27 +34,27 @@ public class AlproIIIT2 {
             Integer numberOfNodes = Scanner.nextInt();
             if (numberOfNodes == 0)
                 break;
-            GenerateRandomTree(numberOfNodes);
-            Integer numberOfOperations = GetNumberOfOperations();
-            WriteOutput(numberOfNodes, numberOfOperations);
+            generateRandomTree(numberOfNodes);
+            Integer numberOfOperations = getNumberOfOperations();
+            writeOutput(numberOfNodes, numberOfOperations);
         }
         
         /*for (Integer numberOfNodes = 1; numberOfNodes <= 10000; numberOfNodes++) {
-            GenerateRandomTree(numberOfNodes);
-            Integer numberOfOperations = GetNumberOfOperations();
-            WriteOutput(numberOfNodes, numberOfOperations);
+            generateRandomTree(numberOfNodes);
+            Integer numberOfOperations = getNumberOfOperations();
+            writeOutput(numberOfNodes, numberOfOperations);
         }*/
         
-        CloseFile();
+        closeFile();
     }
     
-    public static void Bootstrap() {
+    public static void bootstrap() {
         Scanner = new Scanner(System.in);
         Tree = new Tree();
 	File = new File(FilePath);
     }
     
-    public static void CloseFile() {
+    public static void closeFile() {
         try {
             BufferWriter.close();
         }
@@ -63,7 +63,7 @@ public class AlproIIIT2 {
         }
     }
     
-    public static void LoadFile() {
+    public static void loadFile() {
         try {
             if (!File.exists()) {
                 File.createNewFile();
@@ -77,7 +77,7 @@ public class AlproIIIT2 {
         }
     }
     
-    public static void WriteOutput(Integer numberOfNodes, Integer numberOfOperations) {
+    public static void writeOutput(Integer numberOfNodes, Integer numberOfOperations) {
         try {
             BufferWriter.newLine();
             BufferWriter.write(numberOfNodes + "," + numberOfOperations);
@@ -86,18 +86,18 @@ public class AlproIIIT2 {
         }
     }
     
-    public static Integer GetNumberOfOperations() {
-        return Tree.GetNodesByLevelCountOperations();
+    public static Integer getNumberOfOperations() {
+        return Tree.getNodesByeLvelCountOperations();
     }
     
-    public static void GenerateRandomTree(Integer numberOfNodes) {
+    public static void generateRandomTree(Integer numberOfNodes) {
         Random random = new Random();
         Integer randomKey = random.nextInt(100000);
-        Tree.SetRoot(new Node(randomKey));
+        Tree.setRoot(randomKey);
         
         for (Integer count = 0; count < numberOfNodes; count++) {
             randomKey = random.nextInt(100000);
-            Tree.Add(randomKey);
+            Tree.add(randomKey);
         }
     }
 }

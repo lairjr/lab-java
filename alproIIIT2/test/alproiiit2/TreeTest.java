@@ -98,15 +98,15 @@ public class TreeTest {
     }
 
     private void GivenATree(Integer[] keyList) {
-        _sut.SetRoot(new Node(keyList[0]));
+        _sut.setRoot(keyList[0]);
         
         for (Integer index = 1; index < keyList.length; index++){
-            _sut.Add(keyList[index]);
+            _sut.add(keyList[index]);
         }
     }
 
     private void WhenGetNodesByLevelIsCalled() {
-        _result = _sut.GetNodesByLevel();
+        _result = _sut.getNodesByLevel();
     }
 
     private void ThenResultShouldBe(Integer[] expectedResultArray) {

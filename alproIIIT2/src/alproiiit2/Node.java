@@ -13,12 +13,20 @@ public class Node {
     private Node _left;
     private Node _right;
     private Integer _key;
+    private final Boolean _isRoot;
     
     public Node() {
+        _isRoot = false;
     }
     
     public Node(Integer key) {
         _key = key;
+        _isRoot = false;
+    }
+    
+    public Node(Integer key, Boolean isRoot) {
+        _key = key;
+        _isRoot = isRoot;
     }
 
     /**
@@ -61,5 +69,12 @@ public class Node {
      */
     public void setKey(Integer _key) {
         this._key = _key;
+    }
+
+    /**
+     * @return the _isRoot
+     */
+    public Boolean isRoot() {
+        return _isRoot;
     }
 }
