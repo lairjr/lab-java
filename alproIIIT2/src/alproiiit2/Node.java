@@ -14,6 +14,7 @@ public class Node {
     private Node _right;
     private Integer _key;
     private final Boolean _isRoot;
+    private Integer _level;
     
     public Node() {
         _isRoot = false;
@@ -22,11 +23,20 @@ public class Node {
     public Node(Integer key) {
         _key = key;
         _isRoot = false;
+        _level = 0;
     }
     
     public Node(Integer key, Boolean isRoot) {
         _key = key;
         _isRoot = isRoot;
+        if (isRoot)
+            _level = 0;
+    }
+    
+    public Node(Integer key, Boolean isRoot, Integer level) {
+        _key = key;
+        _isRoot = isRoot;
+        _level = level;
     }
 
     /**
@@ -76,5 +86,19 @@ public class Node {
      */
     public Boolean isRoot() {
         return _isRoot;
+    }
+
+    /**
+     * @return the _level
+     */
+    public Integer getLevel() {
+        return _level;
+    }
+
+    /**
+     * @param _height the _level to set
+     */
+    public void setLevel(Integer _height) {
+        this._level = _height;
     }
 }

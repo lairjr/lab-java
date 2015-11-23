@@ -11,55 +11,59 @@ package alproiiit2;
  */
 public class PrintNodeInfoFactory implements IPrintNodeInfoFactory {
     @Override
-    public PrintNodeInfo create(Node node) {
-        if (node == null)
+    public PrintNodeInfo create(Node node, Node treeRoot) {
+        if (node == null|| treeRoot == null)
             throw new IllegalArgumentException("Node has a null value.");
         
-        Integer leftDashCount = getLeftDashCount(node.getLeft(), true);
-        Integer rightDashCount = getRightDashCount(node.getRight(), true);
+        Integer leftDashNumber = getLeftDashNumber(node.getLeft());
+        Integer rightDashNumber = getRightDashNumber(node.getRight());
+        Integer minorValuesLenght = getMinorValuesLenght(node.getKey(), treeRoot);
+        Integer padLeft = minorValuesLenght - leftDashNumber;
         
-        if (node.isRoot()) {
-            Integer totalLeftColumns = getTotalLeftColumns(node.getLeft(), true);
-            Integer padLeft = totalLeftColumns + leftDashCount;
-            return new PrintNodeInfo(node.getKey(), leftDashCount, rightDashCount, padLeft);
-        }
+        return new PrintNodeInfo(node.getKey(), leftDashNumber, rightDashNumber, padLeft);        
+    }
+    
+    private Integer getLeftDashNumber(Node leftNode) {
+        Integer widthCount = 0;
+        if (leftNode == null)
+            return widthCount;
         
-        return new PrintNodeInfo(node.getKey(), leftDashCount, rightDashCount);
+        Integer rightWidth = getTreeWidth(leftNode.getRight());
+        return rightWidth + String.valueOf(leftNode.getKey()).length();
     }
-
-    private Integer getLeftDashCount(Node node, Boolean isTheFirst) {
-        if (node != null) {
-            Integer dashCount = String.valueOf(node.getKey()).length();
-            dashCount += getLeftDashCount(node.getRight(), false);
-            if (isTheFirst) 
-                return dashCount;
-            
-            dashCount += getLeftDashCount(node.getLeft(), false);
-            return dashCount;
-        }
-        return 0;
+    
+    private Integer getRightDashNumber(Node rightNode) {
+        Integer widthCount = 0;
+        if (rightNode == null)
+            return widthCount;
+        
+        Integer leftWidth = getTreeWidth(rightNode.getLeft());
+        return leftWidth + String.valueOf(rightNode.getKey()).length();
     }
-
-    private Integer getRightDashCount(Node node, Boolean isTheFirst) {
-        if (node != null) {
-            Integer dashCount = String.valueOf(node.getKey()).length();
-            dashCount += getRightDashCount(node.getLeft(), false);
-            if (isTheFirst) 
-                return dashCount;
-            
-            dashCount += getRightDashCount(node.getRight(), false);
-            return dashCount;
-        }
-        return 0;
+    
+    private Integer getTreeWidth(Node node) {
+        Integer widthCount = 0;
+        if (node == null) 
+            return widthCount;
+        
+        widthCount += getTreeWidth(node.getLeft());
+        widthCount += getTreeWidth(node.getRight());
+        
+        return widthCount + String.valueOf(node.getKey()).length();
     }
-
-    private Integer getTotalLeftColumns(Node node, Boolean isTheFirst) {
+    
+    private Integer getMinorValuesLenght(Integer nodeKey, Node treeRoot) {
+        return getMinorValuesLenght0(nodeKey, treeRoot);
+    }
+    
+    private Integer getMinorValuesLenght0(Integer nodeKey, Node node) {
         if (node != null) {
-            Integer leftColumns = getTotalLeftColumns(node.getLeft(), false);
-            Integer rigthColumns = getTotalLeftColumns(node.getRight(), false);
-            if (isTheFirst)
-                return leftColumns + rigthColumns;
-            return leftColumns + rigthColumns + String.valueOf(node.getKey()).length();
+            Integer count = 0;
+            count += getMinorValuesLenght0(nodeKey, node.getLeft());
+            count += getMinorValuesLenght0(nodeKey, node.getRight());
+            if (nodeKey > node.getKey())
+                count += String.valueOf(node.getKey()).length();
+            return count;
         }
         return 0;
     }

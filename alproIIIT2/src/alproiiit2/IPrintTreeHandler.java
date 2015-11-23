@@ -9,6 +9,7 @@ package alproiiit2;
  *
  * @author lairjr
  */
-public interface IPrintNodeInfoFactory {
-    PrintNodeInfo create(Node node, Node treeRoot);
+public interface IPrintTreeHandler {
+    void printTree(Node treeRoot);
+    Integer printTreeNumberOfOperations(Node treeRoot);
 }

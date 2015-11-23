@@ -20,6 +20,7 @@ public class AlproIIIT2 {
     public static Scanner Scanner;
     public static File File;
     public static BufferedWriter BufferWriter;
+    public static IPrintTreeHandler PrintTreeHandler;
     public static String FilePath = "./alproIII.csv";
     /**
      * @param args the command line arguments
@@ -29,21 +30,27 @@ public class AlproIIIT2 {
         loadFile();
         
         while (true) {
-            System.out.println("Informe o número de nodos: (0 para sair)");
+            System.out.println("Informe o número de nodos: (0 para gerar enunciado, -1 para sair)");
             
+            generateSampleTree();
             Integer numberOfNodes = Scanner.nextInt();
-            if (numberOfNodes == 0)
+            if (numberOfNodes == -1)
                 break;
-            generateRandomTree(numberOfNodes);
-            Integer numberOfOperations = getNumberOfOperations();
-            writeOutput(numberOfNodes, numberOfOperations);
+            if (numberOfNodes == 0) {
+                generateSampleTree();
+                PrintTreeHandler.printTree(Tree.getRoot());
+            }
+            else {
+                generateRandomTree(numberOfNodes);
+                PrintTreeHandler.printTree(Tree.getRoot());
+            }
         }
         
-        /*for (Integer numberOfNodes = 1; numberOfNodes <= 10000; numberOfNodes++) {
+        for (Integer numberOfNodes = 1; numberOfNodes <= 10000; numberOfNodes++) {
             generateRandomTree(numberOfNodes);
-            Integer numberOfOperations = getNumberOfOperations();
+            Integer numberOfOperations = PrintTreeHandler.printTreeNumberOfOperations(Tree.getRoot());
             writeOutput(numberOfNodes, numberOfOperations);
-        }*/
+        }
         
         closeFile();
     }
@@ -52,6 +59,8 @@ public class AlproIIIT2 {
         Scanner = new Scanner(System.in);
         Tree = new Tree();
 	File = new File(FilePath);
+        IPrintNodeInfoFactory printNodeInfoFactory = new PrintNodeInfoFactory();
+        PrintTreeHandler = new PrintTreeHandler(printNodeInfoFactory);
     }
     
     public static void closeFile() {
@@ -86,18 +95,24 @@ public class AlproIIIT2 {
         }
     }
     
-    public static Integer getNumberOfOperations() {
-        return Tree.getNodesByeLvelCountOperations();
-    }
-    
     public static void generateRandomTree(Integer numberOfNodes) {
         Random random = new Random();
         Integer randomKey = random.nextInt(100000);
         Tree.setRoot(randomKey);
         
-        for (Integer count = 0; count < numberOfNodes; count++) {
+        for (Integer count = 1; count < numberOfNodes; count++) {
             randomKey = random.nextInt(100000);
             Tree.add(randomKey);
+        }
+    }
+    
+    public static void generateSampleTree() {
+        Integer[] keyList = new Integer [] { 262, 80, 332, 3, 164, 297, 353, 73, 115, 199, 276, 325, 346, 367, 24, 143, 192, 220, 290, 318, 10, 31, 171, 206, 255, 45, 234, 38, 52, 241 };
+        
+        Tree.setRoot(keyList[0]);
+        
+        for (Integer index = 1; index < keyList.length; index++){
+            Tree.add(keyList[index]);
         }
     }
 }

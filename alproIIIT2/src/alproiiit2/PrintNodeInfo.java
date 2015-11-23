@@ -89,4 +89,28 @@ public class PrintNodeInfo {
     public void setPadLeft(Integer _padLeft) {
         this._padLeft = _padLeft;
     }
+    
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        
+        builder.append(repeatChar(" ", _padLeft));
+        if (_leftDashNumber > 0) {
+            builder.append("|");
+            if (_leftDashNumber > 1)
+                builder.append(repeatChar("-", _leftDashNumber - 1));
+        }
+        builder.append(_key.toString());
+        if (_rightDashNumber > 0) {
+            if (_rightDashNumber > 1)
+                builder.append(repeatChar("-", _rightDashNumber - 1));
+            builder.append("|");
+        }
+        
+        return builder.toString();
+    }
+    
+    private String repeatChar(String str, int times) {
+        return new String(new char[times]).replace("\0", str);
+    }
 }

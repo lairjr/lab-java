@@ -1,0 +1,21 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{T2 - Alpro III}
+\author{Lair Júnior e Rodrigo Pacheco}
+\date{18 de November 2015}
+
+
+\begin{document}
+
+\maketitle
+
+\abstract{Este artigo descreve uma alternativa de solução para o sistema de impressão de árvores binárias em impressoras matriciais. Iremos explicar como funciona essa impressão, todos os desafios que dificultam a implementação, descreveremos a nossa proposta de solução e os resultados de performance obtidos com a nossa proposta}
+
+\section{Introdução}
+Desenvolme
+\section{Contexto}
+\section{Desenvolvimento}
+\section{Conclusão}
+
+\end{document}

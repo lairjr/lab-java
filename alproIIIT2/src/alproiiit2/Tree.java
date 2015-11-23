@@ -5,10 +5,6 @@
  */
 package alproiiit2;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Queue;
-
 /**
  *
  * @author lairjr
@@ -36,67 +32,31 @@ public class Tree {
     }
     
     private void add0(Integer key, Node father) {
+        Integer currentLevel = father.getLevel() + 1;
         if (father.getKey() > key) {
             if (father.getLeft() != null) 
                 add0(key, father.getLeft());
             else
-                father.setLeft(new Node(key));
+                father.setLeft(new Node(key, false, currentLevel));
         } else {
             if (father.getRight()!= null) 
                 add0(key, father.getRight());
             else
-                father.setRight(new Node(key));
+                father.setRight(new Node(key, false, currentLevel));
         }
     }
     
-    public ArrayList<Node> getNodesByLevel() {
-        ArrayList<Node> nodePrintList = new ArrayList<>();
-        Queue<Node> nodeQueue = new ArrayDeque<>();
-        
-        if (getRoot() == null) 
-            throw new IllegalArgumentException("Null root node");
-        
-        Node currentNode = getRoot();
-        
-        while (currentNode != null) {
-            if (currentNode.getLeft() != null)
-                nodeQueue.add(currentNode.getLeft());
-            if (currentNode.getRight() != null)
-                nodeQueue.add(currentNode.getRight());
-            
-            nodePrintList.add(currentNode);
-            currentNode = nodeQueue.poll();
-        }
-        
-        return nodePrintList;
+    public Node findNode(Integer searchKey) {
+        return findNode0(searchKey, _root);
     }
     
-    public Integer getNodesByeLvelCountOperations() {
-        Integer operationsCount = 0;
-        
-        ArrayList<Node> nodePrintList = new ArrayList<>(); // operations +1
-        Queue<Node> nodeQueue = new ArrayDeque<>(); // operations +1
-        
-        if (getRoot() == null) // operations +1
-            throw new IllegalArgumentException("Null root node"); // operations +1
-        
-        Node currentNode = getRoot(); // operations +1
-        
-        while (currentNode != null) { // operations +1n 
-            if (currentNode.getLeft() != null) // operations +1n
-                nodeQueue.add(currentNode.getLeft()); // operations +1n
-            if (currentNode.getRight() != null) // operations +1n
-                nodeQueue.add(currentNode.getRight()); // operations +1n
-            
-            nodePrintList.add(currentNode); // operations +1n
-            currentNode = nodeQueue.poll(); // operations +1n
-            operationsCount += 7;
-        }
-        
-        // operations +1
-        operationsCount+= 6;
-        
-        return operationsCount;
+    public Node findNode0(Integer searchKey, Node node) {
+        if (node.getKey().equals(searchKey)) 
+            return node;
+        if (node.getKey() < searchKey)
+            return findNode0(searchKey, node.getRight());
+        if (node.getKey() > searchKey)
+            return findNode0(searchKey, node.getLeft());
+        return null;
     }
-
 }
