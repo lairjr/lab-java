@@ -22,21 +22,13 @@ Além disso, para cada nodo visitado no caminhamento em largura extraímos o nú
   \item[Chave do nodo] \hfill \\
   Cada nodo da árvore já possui essa informação, então nesse caso essa informação foi simplesmento copiada do nodo corrente.
   \item[Número de colunas ocupadas à esquerda] \hfill \\
-  A informação referente ao número de colunas à esquerda ocupadas foi retirada à partir do tamanho da sub-árvore da direita do filho da esquerda do nodo corrente, à baixo figura representa a forma que foi calculado esse item. Foi utilizado um função recursvia percorendo os nodos e extraindo o tamanho de cada chave.
+  A informação referente ao número de colunas à esquerda ocupadas foi retirada à partir do tamanho da sub-árvore da direita do filho da esquerda do nodo corrente, à baixo figura representa a forma que foi calculado esse item.
   \item[Número de colunas ocupadas à direita] \hfill \\
-  Da mesma forma que o item anterior, a informação de número de colunas ocupas à direita também foi utilizado recursão, mas dessa vez à partir do tamanho da sub-árvore da esquerda do filho da direita do nodo corrente, à baixo figura representa a forma que foi calculado esse item.
+  Da mesma forma que o item Já a informação de colunas ocupadas à direita foi retirada à partir do tamanho da sub-árvore da esquerda do filho da direita do nodo corrente, à baixo figura representa a forma que foi calculado esse item.
   \item[Número de colunas à esquerda livres] \hfill \\
-  Também utilzando recursão, para obter essa informação calculamos à partir do tamanho total de todos os nodos menores que o valor do nodo corrente menos o número de colunas ocupadas à esquerda. À baixo número ilustração mostra o cálculo de número menores que o valor corrente.
+  Essa informação foi calculada à partir da àrvore o tamanho total de todos os número menores do que o valor da chave corrente menos o número de colunas ocupadas à esquerda previamente calculado.
 \end{description}
 \section{Detalhes de implementação}
-Para a implementação, escolhemos a tecnologia e linguagem de programação Java, pois foi a padrão utilizada em toda a disciplina de Algoritmos e Programação III.
-A arquitetura da aplicação é composta dois objetos de estrutura de dados para armazenar a àrvore denominados Tree e Node.
-
-
-
-um objeto de transferencia de dados e três componentes responsável pela lógica de negócio e criação de objetos.
-A
-
 \section{Resultados obtidos}
 \section{Conclusão}
 

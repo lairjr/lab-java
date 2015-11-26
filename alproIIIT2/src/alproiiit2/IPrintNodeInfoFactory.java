@@ -11,4 +11,5 @@ package alproiiit2;
  */
 public interface IPrintNodeInfoFactory {
     PrintNodeInfo create(Node node, Node treeRoot);
+    Integer createCountOperations(Node treeRoot);
 }

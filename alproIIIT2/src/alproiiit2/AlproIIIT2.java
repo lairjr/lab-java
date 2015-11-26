@@ -29,25 +29,25 @@ public class AlproIIIT2 {
         bootstrap();
         loadFile();
         
-        while (true) {
+        /*while (true) {
             System.out.println("Informe o número de nodos: (0 para gerar enunciado, -1 para sair)");
             
             generateSampleTree();
             Integer numberOfNodes = Scanner.nextInt();
+            
             if (numberOfNodes == -1)
                 break;
-            if (numberOfNodes == 0) {
+            if (numberOfNodes == 0) 
                 generateSampleTree();
-                PrintTreeHandler.printTree(Tree.getRoot());
-            }
-            else {
+            else
                 generateRandomTree(numberOfNodes);
-                PrintTreeHandler.printTree(Tree.getRoot());
-            }
-        }
+            
+            PrintTreeHandler.printTree(Tree.getRoot());
+        }*/
         
         for (Integer numberOfNodes = 1; numberOfNodes <= 10000; numberOfNodes++) {
             generateRandomTree(numberOfNodes);
+            System.out.println(numberOfNodes);
             Integer numberOfOperations = PrintTreeHandler.printTreeNumberOfOperations(Tree.getRoot());
             writeOutput(numberOfNodes, numberOfOperations);
         }

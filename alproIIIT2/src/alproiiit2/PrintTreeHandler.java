@@ -72,21 +72,24 @@ public class PrintTreeHandler implements IPrintTreeHandler {
                 nodeQueue.add(currentNode.getRight()); // numberOfOperations + 1n
             
             if (!Objects.equals(currentLevel, currentNode.getLevel())) { // numberOfOperations + 1n
-                System.out.println(); // numberOfOperations + 1n
+                //System.out.println(); // numberOfOperations + 1n
                 currentLevel = currentNode.getLevel(); // numberOfOperations + 1n
                 currentLineColumn = 0; // numberOfOperations + 1n
             }
             
             PrintNodeInfo printNodeInfo = _printNodeInfoFactory.create(currentNode, treeRoot); // numberOfOperations + 1n
+            
+            numberOfOperations += _printNodeInfoFactory.createCountOperations(treeRoot); // numberOfOperations + 5n ^ 2
+            
             String nodeInfoString = printNodeInfo.toString().substring(currentLineColumn); // numberOfOperations + 1n
-            System.out.print(nodeInfoString); // numberOfOperations + 1n
+            //System.out.print(nodeInfoString); // numberOfOperations + 1n
             currentLineColumn += nodeInfoString.length(); // numberOfOperations + 1n
             
             currentNode = nodeQueue.poll(); // numberOfOperations + 1n
             
             numberOfOperations += 14;
         }
-        System.out.println(); // numberOfOperations + 1
+        //System.out.println(); // numberOfOperations + 1
         
         numberOfOperations += 7;
         

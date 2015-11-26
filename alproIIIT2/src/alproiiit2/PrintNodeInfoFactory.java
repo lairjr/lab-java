@@ -67,4 +67,20 @@ public class PrintNodeInfoFactory implements IPrintNodeInfoFactory {
         }
         return 0;
     }
+
+    @Override
+    public Integer createCountOperations(Node treeRoot) {
+        return getNumberOfNodes(treeRoot) * 5;
+    }
+    
+    public Integer getNumberOfNodes(Node node) {
+        Integer count = 0;
+        if (node == null)
+            return count;
+        
+        count += getNumberOfNodes(node.getLeft());
+        count += getNumberOfNodes(node.getRight());
+        
+        return count + 1;
+    }
 }
