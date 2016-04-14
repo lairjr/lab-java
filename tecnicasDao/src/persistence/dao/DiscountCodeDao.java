@@ -88,8 +88,8 @@ public class DiscountCodeDao implements IDao<DiscountCodeDto> {
         queryBuilder.append("RATE ");
         queryBuilder.append(") ");
         queryBuilder.append("VALUES (");
-        queryBuilder.append("DISCOUNT_CODE = ? ");
-        queryBuilder.append("RATE = ? ");
+        queryBuilder.append("?, ");
+        queryBuilder.append("? ");
         queryBuilder.append(") ");
 
         try {

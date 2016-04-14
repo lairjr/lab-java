@@ -134,7 +134,7 @@ public class ProductCodeDao implements IProductCodeDao {
 
             cmd.setString(1, dicountCode);
 
-            ResultSet rs = cmd.executeQuery(queryBuilder.toString());
+            ResultSet rs = cmd.executeQuery();
 
             while(rs.next()) {
                 productCodeDtos.add(create(rs));
