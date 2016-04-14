@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Wed Apr 13 23:48:28 BRT 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0154-12ab-7956-000006e73a40 
+on database directory /Users/ljunior/My_Projects/github/lab-java/CadastroEditoraDTO/cadastro with class loader sun.misc.Launcher$AppClassLoader@29453f44 
+Loaded from file:/Users/ljunior/My_Projects/github/lab-java/CadastroEditoraDTO/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_73-b02
+user.dir=/Users/ljunior/My_Projects/github/lab-java/CadastroEditoraDTO
+os.name=Mac OS X
+os.arch=x86_64
+os.version=10.11.4
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
