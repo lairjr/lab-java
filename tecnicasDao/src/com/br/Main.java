@@ -6,6 +6,7 @@ import persistence.Database;
 import persistence.IDatabase;
 import persistence.dao.DiscountCodeDao;
 import persistence.dao.IDao;
+import persistence.dao.IProductCodeDao;
 import persistence.dao.ProductCodeDao;
 import persistence.dto.DiscountCodeDto;
 import persistence.dto.ProductCodeDto;
@@ -47,7 +48,7 @@ public class Main {
         try {
             IDatabase db = new Database();
             IDao<DiscountCodeDto> discountCodeDao = new DiscountCodeDao(db);
-            IDao<ProductCodeDto> productCodeDto = new ProductCodeDao(db);
+            IProductCodeDao productCodeDto = new ProductCodeDao(db);
 
             mainController = new MainController(discountCodeDao, productCodeDto);
         } catch (Exception e) {

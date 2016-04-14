@@ -2,6 +2,7 @@ package controller;
 
 import persistence.DaoException;
 import persistence.dao.IDao;
+import persistence.dao.IProductCodeDao;
 import persistence.dto.DiscountCodeDto;
 import persistence.dto.ProductCodeDto;
 
@@ -14,10 +15,10 @@ import java.util.List;
  */
 public class MainController {
     private IDao<DiscountCodeDto> discountCodeDao;
-    private IDao<ProductCodeDto> productCodeDao;
+    private IProductCodeDao productCodeDao;
 
     public MainController(IDao<DiscountCodeDto> discountCodeDao,
-                          IDao<ProductCodeDto> productCodeDao
+                          IProductCodeDao productCodeDao
                           ) {
         this.discountCodeDao = discountCodeDao;
         this.productCodeDao = productCodeDao;
@@ -45,9 +46,9 @@ public class MainController {
         return discountCodeDao.insert(discountCodeDto);
     }
 
-    public List<String> listProdutosPorTipoDesconto(String tipoDesconto) throws DaoException {
+    public List<String> listProdutosPorTipoDesconto(String discountCode) throws DaoException {
         ArrayList<String> retornoProducts = new ArrayList<String>();
-        List<ProductCodeDto> listProducts = productCodeDao.getAll();
+        List<ProductCodeDto> listProducts = productCodeDao.getByDiscountCode(discountCode);
 
         for (ProductCodeDto product:
                 listProducts) {

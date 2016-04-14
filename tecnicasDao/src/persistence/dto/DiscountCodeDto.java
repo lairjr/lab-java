@@ -24,4 +24,9 @@ public class DiscountCodeDto {
     public void setRate(BigDecimal rate) {
         this.rate = rate;
     }
+
+    @Override
+    public String toString() {
+        return discountCode + " - " + rate.toString();
+    }
 }

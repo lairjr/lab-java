@@ -13,8 +13,8 @@ import java.sql.Statement;
  */
 public class Database implements IDatabase {
     public static String DB_NAME = "sample";
-    public static String USER_NAME = "usuario";
-    public static String PASSWORD = "senha";
+    public static String USER_NAME = "app";
+    public static String PASSWORD = "app";
     private static Connection connection;
 
     public Database() throws SQLException {

@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Thu Apr 14 10:44:59 BRT 2016:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0154-1504-878f-000006def3a8 
+Thu Apr 14 12:41:57 BRT 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0154-156f-9cde-000006dea200 
 on database directory /Users/ljunior/My_Projects/github/lab-java/tecnicasDao/sample with class loader sun.misc.Launcher$AppClassLoader@14dad5dc 
 Loaded from file:/Users/ljunior/My_Projects/github/lab-java/tecnicasDao/lib/derby.jar
 java.vendor=Oracle Corporation
@@ -11,43 +11,3 @@ os.arch=x86_64
 os.version=10.11.4
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
-Thu Apr 14 10:45:01 BRT 2016 Thread[main,5,main] (XID = 808), (SESSIONID = 0), (DATABASE = sample), (DRDAID = null), Cleanup action starting
-java.sql.SQLNonTransientConnectionException: Connection authentication failure occurred.  Reason: Invalid authentication..
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.checkUserCredentials(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.getNewEmbedConnection(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
-	at org.apache.derby.jdbc.BasicEmbeddedDataSource40.getConnection(Unknown Source)
-	at org.apache.derby.jdbc.BasicEmbeddedDataSource40.getConnection(Unknown Source)
-	at persistence.Database.<init>(Database.java:28)
-	at com.br.Main.bootstrap(Main.java:48)
-	at com.br.Main.main(Main.java:21)
-Caused by: ERROR 08004: Connection authentication failure occurred.  Reason: Invalid authentication..
-	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.wrapArgsForTransportAcrossDRDA(Unknown Source)
-	... 14 more
-============= begin nested exception, level (1) ===========
-ERROR 08004: Connection authentication failure occurred.  Reason: Invalid authentication..
-	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.wrapArgsForTransportAcrossDRDA(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.checkUserCredentials(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.getNewEmbedConnection(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
-	at org.apache.derby.jdbc.BasicEmbeddedDataSource40.getConnection(Unknown Source)
-	at org.apache.derby.jdbc.BasicEmbeddedDataSource40.getConnection(Unknown Source)
-	at persistence.Database.<init>(Database.java:28)
-	at com.br.Main.bootstrap(Main.java:48)
-	at com.br.Main.main(Main.java:21)
-============= end nested exception, level (1) ===========
-Cleanup action completed

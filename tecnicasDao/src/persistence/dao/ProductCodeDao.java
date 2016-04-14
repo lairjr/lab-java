@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by ljunior on 4/14/16.
  */
-public class ProductCodeDao implements IDao<ProductCodeDto> {
+public class ProductCodeDao implements IProductCodeDao {
     private IDatabase db;
 
     public ProductCodeDao(IDatabase db) {
@@ -116,5 +116,35 @@ public class ProductCodeDao implements IDao<ProductCodeDto> {
         ProductCodeDto.setProductCode(rs.getString("PROD_CODE"));
 
         return ProductCodeDto;
+    }
+
+    @Override
+    public List<ProductCodeDto> getByDiscountCode(String dicountCode) {
+        List<ProductCodeDto> productCodeDtos = new ArrayList();
+
+        StringBuilder queryBuilder = new StringBuilder();
+
+        queryBuilder.append("SELECT * FROM ");
+        queryBuilder.append("PRODUCT_CODE ");
+        queryBuilder.append("WHERE ");
+        queryBuilder.append("DISCOUNT_CODE = ? ");
+
+        try {
+            PreparedStatement cmd = db.prepareStatement(queryBuilder.toString());
+
+            cmd.setString(1, dicountCode);
+
+            ResultSet rs = cmd.executeQuery(queryBuilder.toString());
+
+            while(rs.next()) {
+                productCodeDtos.add(create(rs));
+            }
+
+            return productCodeDtos;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return productCodeDtos;
     }
 }
