@@ -1,7 +1,7 @@
 ----------------------------------------------------------------
-Thu Apr 14 13:30:34 BRT 2016:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0154-159c-21e4-000006def308 
-on database directory /Users/ljunior/My_Projects/github/lab-java/tecnicasDao/sample with class loader sun.misc.Launcher$AppClassLoader@14dad5dc 
+Thu Apr 14 21:58:21 BRT 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0154-176d-0668-000006dd3e08 
+on database directory /Users/ljunior/My_Projects/github/lab-java/tecnicasDao/sample with class loader sun.misc.Launcher$AppClassLoader@29453f44 
 Loaded from file:/Users/ljunior/My_Projects/github/lab-java/tecnicasDao/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_73-b02

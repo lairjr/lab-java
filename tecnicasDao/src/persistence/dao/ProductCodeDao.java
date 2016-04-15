@@ -41,9 +41,8 @@ public class ProductCodeDao implements IProductCodeDao {
             return productCodeDtos;
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new DaoException(e, "Erro ao ler produtos do database.");
         }
-
-        return productCodeDtos;
     }
 
     @Override
@@ -71,9 +70,8 @@ public class ProductCodeDao implements IProductCodeDao {
             return productCodeDto;
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new DaoException(e, "Erro ao ler o produto do database.");
         }
-
-        return productCodeDto;
     }
 
     @Override
@@ -103,23 +101,12 @@ public class ProductCodeDao implements IProductCodeDao {
             return cmd.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new DaoException(e, "Erro ao inserir produto no database.");
         }
-
-        return 0;
-    }
-
-    private ProductCodeDto create(ResultSet rs) throws SQLException {
-        ProductCodeDto ProductCodeDto = new ProductCodeDto();
-
-        ProductCodeDto.setDescription(rs.getString("DESCRIPTION"));
-        ProductCodeDto.setDiscountCode(rs.getString("DISCOUNT_CODE"));
-        ProductCodeDto.setProductCode(rs.getString("PROD_CODE"));
-
-        return ProductCodeDto;
     }
 
     @Override
-    public List<ProductCodeDto> getByDiscountCode(String dicountCode) {
+    public List<ProductCodeDto> getByDiscountCode(String dicountCode) throws DaoException {
         List<ProductCodeDto> productCodeDtos = new ArrayList();
 
         StringBuilder queryBuilder = new StringBuilder();
@@ -143,8 +130,17 @@ public class ProductCodeDao implements IProductCodeDao {
             return productCodeDtos;
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new DaoException(e, "Erro ao ler produtos do database.");
         }
+    }
 
-        return productCodeDtos;
+    private ProductCodeDto create(ResultSet rs) throws SQLException {
+        ProductCodeDto ProductCodeDto = new ProductCodeDto();
+
+        ProductCodeDto.setDescription(rs.getString("DESCRIPTION"));
+        ProductCodeDto.setDiscountCode(rs.getString("DISCOUNT_CODE"));
+        ProductCodeDto.setProductCode(rs.getString("PROD_CODE"));
+
+        return ProductCodeDto;
     }
 }

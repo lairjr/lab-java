@@ -42,9 +42,8 @@ public class DiscountCodeDao implements IDao<DiscountCodeDto> {
             return discountCodeDtos;
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new DaoException(e, "Erro ao ler discontos do database.");
         }
-
-        return discountCodeDtos;
     }
 
     @Override
@@ -72,9 +71,8 @@ public class DiscountCodeDao implements IDao<DiscountCodeDto> {
             return discountCodeDto;
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new DaoException(e, "Erro ao ler o disconto do database.");
         }
-
-        return discountCodeDto;
     }
 
     @Override
@@ -101,9 +99,8 @@ public class DiscountCodeDao implements IDao<DiscountCodeDto> {
             return cmd.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new DaoException(e, "Erro ao inserir disconto no database.");
         }
-
-        return 0;
     }
 
     private DiscountCodeDto create(ResultSet rs) throws SQLException {

@@ -9,14 +9,15 @@ import persistence.dao.IDao;
 import persistence.dao.IProductCodeDao;
 import persistence.dao.ProductCodeDao;
 import persistence.dto.DiscountCodeDto;
-import persistence.dto.ProductCodeDto;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.concurrent.Callable;
 
 public class Main {
     private static MainController mainController;
     private static Scanner scanner;
+    public static Map<Integer, Callable> mapActions = new HashMap<>();
 
     public static void main(String[] args) {
         bootstrap();
@@ -24,21 +25,7 @@ public class Main {
             printMenu();
             Integer option = scanner.nextInt();
 
-            switch (option) {
-                case 1:
-                    listTiposDescontos();
-                    break;
-                case 2:
-                    insertTipoDesconto();
-                    break;
-                case 3:
-                    listProdutosPorTipoDesconto();
-                    break;
-                case 0:
-                    exit();
-                default:
-                        break;
-            }
+            performAction(mapActions.get(option));
         }
     }
 
@@ -50,61 +37,66 @@ public class Main {
             IDao<DiscountCodeDto> discountCodeDao = new DiscountCodeDao(db);
             IProductCodeDao productCodeDto = new ProductCodeDao(db);
 
+            mapActions.put(0, () -> exit());
+            mapActions.put(1, () -> listTiposDescontos());
+            mapActions.put(2, () -> insertTipoDesconto());
+            mapActions.put(3, () -> listProdutosPorTipoDesconto());
+
             mainController = new MainController(discountCodeDao, productCodeDto);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void listTiposDescontos() {
-        try {
-            List<String> listTiposDescontos = mainController.listTiposDescontos();
-            for (String tipoDesconto:
-                 listTiposDescontos) {
-                System.out.println(tipoDesconto);
-            }
-        } catch (DaoException e) {
-            e.printStackTrace();
-            System.out.println("Erro ao buscar dados do DB");
+    public static Object listTiposDescontos() throws DaoException {
+        List<String> listTiposDescontos = mainController.listTiposDescontos();
+        for (String tipoDesconto:
+                listTiposDescontos) {
+            System.out.println(tipoDesconto);
         }
+        return null;
     }
 
-    public static void insertTipoDesconto() {
-        try {
-            System.out.print("Informe o código de desconto: ");
-            String discountCode = scanner.next();
-            System.out.print("Informe a taxa de desconto: ");
-            BigDecimal rate = scanner.nextBigDecimal();
+    public static Object insertTipoDesconto() throws DaoException {
+        System.out.print("Informe o código de desconto: ");
+        String discountCode = scanner.next();
+        System.out.print("Informe a taxa de desconto: ");
+        BigDecimal rate = scanner.nextBigDecimal();
 
-            int rowsAffected = mainController.insertTipoDesconto(discountCode, rate);
-            if (rowsAffected == 1) {
-                System.out.println();
-                System.out.println("Registro inserido com sucesso!");
-            }
-        } catch (DaoException e) {
-            e.printStackTrace();
-            System.out.println("Erro ao inserir dados no DB");
+        int rowsAffected = mainController.insertTipoDesconto(discountCode, rate);
+        if (rowsAffected == 1) {
+            System.out.println();
+            System.out.println("Registro inserido com sucesso!");
         }
+        return null;
     }
 
-    public static void listProdutosPorTipoDesconto() {
-        try {
-            System.out.print("Informe o tipo de desconto: ");
-            String tipoDesconto = scanner.next();
+    public static Object listProdutosPorTipoDesconto()throws DaoException {
+        System.out.print("Informe o tipo de desconto: ");
+        String tipoDesconto = scanner.next();
 
-            List<String> listProdutos = mainController.listProdutosPorTipoDesconto(tipoDesconto);
-            for (String produto:
-                    listProdutos) {
-                System.out.println(produto);
-            }
-        } catch (DaoException e) {
-            e.printStackTrace();
-            System.out.println("Erro ao buscar dados do DB");
+        List<String> listProdutos = mainController.listProdutosPorTipoDesconto(tipoDesconto);
+        for (String produto:
+                listProdutos) {
+            System.out.println(produto);
         }
+
+        return null;
     }
 
-    public static void exit() {
+    public static Object exit() {
         System.exit(0);
+        return null;
+    }
+
+    public static void performAction(Callable<?> action) {
+        try {
+            action.call();
+        } catch (DaoException ex) {
+            System.out.println(ex.getMessage());
+        } catch (Exception e ){
+            System.out.println("Oooops... Erro genérico.");
+        }
     }
 
     private static void printMenu() {
